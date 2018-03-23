@@ -1,0 +1,348 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>First Contrib</title>
+  <meta charset="UTF-8"> </head>
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
+  @import url(https://fonts.googleapis.com/css?family=Bungee+Inline);
+  @media (max-width: 640px) {
+    .language-pickers {
+      text-align: center;
+    }
+    .card-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .card {
+      flex-direction: column;
+      width: 80%;
+      margin: 40px;
+      background-color: rgba(0, 0, 0, .2);
+      background: radial-gradient(to bottom, #000 0, #ae00ff 80%);
+      box-shadow: 0 0 55px rgba(174, 0, 255, .8)
+    }
+    .card-title {
+      margin-top: -50px;
+      flex: 1
+    }
+
+    .card-title-project {
+      font-size: 15px;
+      margin-left: -20px;
+    }
+
+    .card-title-issue {
+      font-size: 30px;
+    }
+    .card-footer {
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .card-title-project {
+      font-size: 35px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-direction: row;
+    }
+    .card {
+      flex-direction: column;
+      padding: 35 35 0;
+      width: 80%;
+      min-width: 400px;
+      margin: 40px;
+      background-color: rgba(0, 0, 0, .2);
+      background-image: radial-gradient(to bottom, #000 0, #ae00ff 80%);
+      box-shadow: 0 0 55px rgba(174, 0, 255, .8)
+    }
+    .card-title-issue {
+      font-size: 50px;
+    }
+    .card-title {
+      margin-top: -80px;
+      flex: 1
+    }
+
+  }
+
+  .card-title-project {
+    display: flex;
+    background-image: linear-gradient(#ff0ff8, #f9f9f7);
+    font-family: Permanent Marker, cursive;
+    transform: skew(-5deg, -5deg);
+  }
+
+  #reset button {
+    outline: none;
+    border: 0
+  }
+
+  body {
+
+    background: linear-gradient(0deg, #6a0275 0, #040c4a 50%, #6a0275 90%) fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  h2:first-letter {
+    text-transform: capitalize
+  }
+
+  a {
+    text-decoration: none !important;
+
+  }
+
+  .card-title-issue,
+  .card-title-project {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-variant: small-caps
+  }
+
+  .card-title-issue {
+    background-image: linear-gradient(#0fcdff, #fff);
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-family: Bungee Inline, cursive;
+    text-align: center
+  }
+
+  .card-body {
+    display: flex
+  }
+
+  .card-footer {
+    margin-top: 20px;
+    display: flex;
+    color: #fff;
+    font-family: Permanent Marker, cursive;
+    justify-content: space-around
+  }
+
+  .star {
+    font-size: 20px;
+    color: #ff0;
+    text-shadow: #ff0 0 0 20px
+  }
+
+  .card-labels {
+    align-self: center
+  }
+
+  .label {
+    color: #fff;
+    text-transform: uppercase;
+    font-family: Bungee Inline, cursive
+  }
+
+  .link {
+    display: block;
+    cursor: pointer
+  }
+
+  .language-picker {
+    color: #fff;
+    background: none;
+    border: none;
+    font-family: Bungee Inline, cursive;
+    font-size: 20px
+  }
+
+  .active {
+    text-shadow: #0fcdff 0 0 20px;
+    color: #baf1ff;
+  }
+
+  .language-picker:hover {
+    text-shadow: #ff0 0 0 20px;
+    cursor: pointer
+  }
+
+  ::-webkit-input-placeholder {
+    color: #fff
+  }
+
+  :-moz-placeholder,
+  ::-moz-placeholder {
+    color: #fff
+  }
+
+  :-ms-input-placeholder {
+    color: #fff
+  }
+
+  #searchInput {
+    margin-top: 50%;
+    font-size: 35px;
+    font-family: Bungee Inline, cursive;
+    background-color: transparent;
+    border: none;
+    opacity: 1;
+    color: #ae00ff;
+    border-bottom: 3px solid #ff0ff8;
+    box-shadow: 0 4px 7px -5px #fff;
+    margin-bottom: 15px;
+    transition: all .2s ease;
+    text-align: center
+  }
+
+  #searchInput:hover {
+    border-bottom: 3px solid #fff
+  }
+
+  #searchInput.empty {
+    opacity: .5
+  }
+
+  input:focus {
+    outline: none;
+    border: 1px solid #ff0ff8
+  }
+
+  #searchPanel {
+    align-self: center;
+    flex-direction: column;
+    align-items: center
+  }
+
+  .separator {
+    color: #fff
+  }
+
+  #searchButton {
+    color: blue;
+    background: none;
+    border: none;
+    font-family: Permanent Marker, cursive;
+    font-size: 35px;
+    color: #ff0ff8;
+    cursor: pointer;
+    transition: all .3s
+  }
+
+  #searchButton:hover {
+    color: #fff;
+    transform: rotate(1turn)
+  }
+
+  #results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .noshrink {
+    flex-shrink: 0;
+  }
+
+  #searchBar {
+    text-align: center;
+  }
+
+  .loading-container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+    margin-top: 50px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @keyframes flickering {
+    0% {
+      text-shadow: none;
+      opacity: 0.1;
+    }
+    1% {
+      opacity: 1;
+    }
+    2% {
+      opacity: 1;
+      text-shadow: inherit;
+    }
+    3% {
+      text-shadow: none;
+      opacity: 0.4;
+    }
+    6% {
+      text-shadow: none;
+      opacity: 0.4;
+    }
+    10% {
+      opacity: 1;
+    }
+    11% {
+      opacity: 0.1;
+    }
+    15% {
+      opacity: 0.5;
+    }
+    40% {
+      text-shadow: inherit;
+    }
+  }
+</style>
+
+<body>
+  <div id="searchPanel">
+    <div id="searchBar">
+      <input type="search" id="searchInput" class="empty" onfocus="this.placeholder=''" onblur="this.placeholder='search a repository'"
+        placeholder="search a repo">
+      <input type="button" id="searchButton" value="GO!"> </div>
+    <div class="language-pickers">
+      <a class="language-picker" title='Search issues in project written in javascript' id="javascript">Javascript</a>
+      <span class="separator">//</span>
+      <a class="language-picker" title='Search issues in project written in go' id="go">Go</a>
+      <span class="separator">//</span>
+      <a class="language-picker" title='Search issues in project written in c++' id="c">C++</a>
+      <span class="separator">//</span>
+      <a class="language-picker" title='Search issues in project written in html' id="html">HTML</a>
+      <span class="separator">//</span>
+      <a class="language-picker" title='Search issues in project written in css' id="css">CSS</a>
+      <span class="separator">//</span>
+      <a class="language-picker" title='Search issues in project written in java' id="java">Java</a>
+      <span class="separator">//</span>
+      <a class="language-picker" title='Search issues in project written in python' id="python">python</a>
+      <span class="separator">//</span>
+      <a class="language-picker" title='Search issues in project written in ocaml' id="ocaml">OCaml</a>
+      <span class="separator">//</span>
+      <a class="language-picker" title='Search issues in project written in ruby' id="ruby">Ruby</a>
+    </div>
+  </div>
+  <div id="results">
+  </div>
+  <div class="loading-container hidden">
+    <div class="loader-inner pacman">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</body>
+<script src="./src/index.js"></script> </body>
+
+</html>

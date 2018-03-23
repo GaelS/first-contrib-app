@@ -1,0 +1,30 @@
+{
+  "name": "first-contrib-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html",
+    "deploy": "npm run build && cp ./dist/first-contrib-project.html ./dist/200.html && surge"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.1.11",
+    "apollo-client": "^2.2.7",
+    "apollo-link": "^1.2.1",
+    "apollo-link-error": "^1.0.9",
+    "apollo-link-http": "^1.5.3",
+    "axios": "0.18.0",
+    "btoa-lite": "1.0.0",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
+    "loaders.css": "^0.1.2",
+    "lodash.zip": "4.2.0",
+    "time-ago": "0.2.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "parcel-bundler": "^1.6.1"
+  },
+  "keywords": []
+}
