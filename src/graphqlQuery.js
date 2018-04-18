@@ -7,7 +7,7 @@ import { onError } from 'apollo-link-error';
 import gql from 'graphql-tag';
 import labels from './labels';
 import createCards from './cards';
-import { getToken, redirectToLogin } from './login';
+import { getToken, togglePopup } from './login';
 
 const query = gql` 
   query Search(${labels.map((_, index) => `$query${index}: String!`)}){
@@ -62,7 +62,7 @@ const AuthLink = (operation, forward) => {
 
 const ErrorLink = onError(({ graphqlErrors, networkError }) => {
   if (networkError.statusCode === 401) {
-    redirectToLogin();
+    togglePopup({ display: true });
   }
 });
 

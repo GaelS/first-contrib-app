@@ -35,6 +35,10 @@
       margin-left: -20px;
     }
 
+    .disclaimer-title {
+      margin-left: 0px;
+    }
+
     .card-title-issue {
       font-size: 30px;
     }
@@ -117,9 +121,6 @@
 
   .card-title-issue {
     background-image: linear-gradient(#0fcdff, #fff);
-    -moz-background-clip: text;
-    -webkit-background-clip: text;
-    background-clip: text;
     font-family: Bungee Inline, cursive;
     text-align: center
   }
@@ -277,6 +278,82 @@
     border: 0;
   }
 
+
+  .login-popup-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .login-popup {
+    position: absolute;
+    min-height: 300px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 1px 1px 80px 50px #ff3ff9;
+    background-color: #3b0b3a;
+    z-index: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 90%;
+  }
+
+  .disclaimer-palm-tree {
+    position: absolute;
+    bottom: -20;
+    right: 0;
+    height: 300px;
+    z-index: -1;
+  }
+
+  .disclaimer-title {
+    font-size: 45px;
+    margin-top: -25px;
+  }
+
+  .disclaimer-content {
+    color: white;
+    font-family: Bungee Inline, cursive;
+    font-size: 20px;
+
+  }
+
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .button-ok {
+    color: white;
+    font-family: Permanent Marker, cursive;
+    font-size: 50px;
+    transition: all 0.2s;
+  }
+
+  .button-ok:hover {
+    text-shadow: 2px 2px cyan;
+  }
+
+  .button-nope {
+    color: #ffffff6b;
+    font-family: Permanent Marker, cursive;
+    font-size: 25px;
+  }
+
   @keyframes flickering {
     0% {
       text-shadow: none;
@@ -347,6 +424,20 @@
       <div></div>
       <div></div>
       <div></div>
+    </div>
+  </div>
+
+  <div class="login-popup-container">
+    <div class="login-popup">
+      <h2 class='card-title-project disclaimer-title'>Disclaimer</h2>
+      <h2 class='card-title-issue'>Your Github credentials are required !</h2>
+      <p class="disclaimer-content">This app is powered by the Graphql Github API which requires to be authenticated to be used... That's all ! </p>
+      <div class="buttons-container">
+        <a class='button-ok' title='Go to the app !'>Ok</a>
+        <a class='button-nope' title='Go back to Github' href="http://github.com">Never !
+        </a>
+      </div>
+      <img class="disclaimer-palm-tree" src='./palm-tree.png' alt="Palm Tree" />
     </div>
   </div>
   <a href="https://github.com/GaelS/first-contrib-app">

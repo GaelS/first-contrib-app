@@ -1,17 +1,24 @@
-const { AUTH_URL } = process.env;
-
 function saveToken(token) {
   if (!token) {
-    redirectToLogin();
+    togglePopup();
   }
   localStorage.setItem('token', token);
 }
 
-function redirectToLogin() {
-  window.location = AUTH_URL;
-}
 function getToken() {
   return localStorage.getItem('token');
 }
 
-export { getToken, redirectToLogin, saveToken };
+function togglePopup({ display = false }) {
+  const popup = document.querySelector('.login-popup-container');
+  const isHidden = popup.classList.contains('hidden');
+  if (display && isHidden) {
+    popup.classList.remove('hidden');
+  }
+
+  if (!display) {
+    popup.classList.add('hidden');
+  }
+}
+
+export { getToken, saveToken, togglePopup };

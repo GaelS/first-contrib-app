@@ -1,6 +1,6 @@
 import search from './graphqlQuery';
 import { showLoadingSpinner } from './cards';
-import { saveToken } from './login';
+import { saveToken, getToken, togglePopup } from './login';
 
 function toggleLanguageSelector() {
   const languages = document.querySelectorAll('.language-picker');
@@ -23,10 +23,12 @@ function initState() {
     q: searchParams.get('q') || '',
     language: searchParams.get('language') || '',
   };
+
   const token = searchParams.get('token') || '';
-  if (token) {
+  if (!!token) {
     saveToken(token);
   }
+  togglePopup({ display: !getToken() });
   //Perform search if necessary
   if (!!state.q || !!state.language) {
     document.getElementById('searchInput').value = state.q;
