@@ -1,6 +1,8 @@
-export default [
+const labels = [
   'good first issue',
+  'Good first issue',
   'good first contribution',
+  'Good first contribution',
   'first-timers-only',
   'Jump-In',
   'good-beginner-issue',
@@ -34,6 +36,7 @@ export default [
   'for-new-contributor',
   'beginners-only',
   'help wanted',
+  'Help Wanted :octocat:',
   'bug/good-first',
   'newbie',
   'Good First Bug',
@@ -49,7 +52,12 @@ export default [
   'BEGINNER',
   'first-timers-only',
   'Starter',
-].reduce((acc, label, i) => {
+  'good-first-patch',
+];
+
+export { labels };
+
+export default labels.reduce((acc, label, i) => {
   if (i === 0) {
     acc[i] = `label:"${label}"`;
   } else {

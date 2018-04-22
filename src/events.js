@@ -1,5 +1,7 @@
+import throttle from 'lodash.throttle';
+
 import search from './graphqlQuery';
-import { showLoadingSpinner } from './cards';
+import { showLoadingSpinner, clearResults } from './cards';
 import { saveToken, getToken, togglePopup } from './login';
 
 function toggleLanguageSelector() {
@@ -33,6 +35,7 @@ function initState() {
   if (!!state.q || !!state.language) {
     document.getElementById('searchInput').value = state.q;
     toggleLanguagePicker(state.language);
+    clearResults();
     showLoadingSpinner();
     search({ keyword: state.q, language: state.language });
   }
@@ -44,6 +47,7 @@ function initState() {
     const url = window.location.origin + '?' + newSearchParams.toString();
     window.history.pushState({ path: url }, 'search', url);
     toggleLanguagePicker(state.language);
+    clearResults();
     showLoadingSpinner();
     search({ keyword: state.q, language: state.language });
   }
@@ -55,11 +59,20 @@ function initState() {
     }
   });
 
+  const infiniteScrollManager = function(event) {
+    const windowScrollHeight = document.documentElement.scrollHeight;
+    const currentScroll = this.window.scrollY;
+    if (windowScrollHeight - currentScroll < 2000) {
+      search({ keyword: state.q, language: state.language }, true);
+      showLoadingSpinner();
+    }
+  };
+  window.addEventListener('wheel', throttle(infiniteScrollManager, 2000));
+
   document
     .getElementById('searchInput')
     .addEventListener('input', function(event) {
       state.q = event.target.value;
-
       event.target.className = !state.q ? 'empty' : '';
     });
 

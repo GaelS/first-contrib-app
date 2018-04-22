@@ -1,12 +1,26 @@
 import { ago } from 'time-ago';
-
 function showLoadingSpinner() {
+  const visbleloadingSpinner = document.querySelector(
+    '#results > .loading-container',
+  );
+  if (!!visbleloadingSpinner) {
+    visbleloadingSpinner.classList.remove('hidden');
+    return;
+  }
   const resultsNode = document.getElementById('results');
-  clearChildren(resultsNode);
   const loadingSpinner = document.querySelector('.loading-container');
   const spinnerClone = loadingSpinner.cloneNode(true);
   resultsNode.append(spinnerClone);
   spinnerClone.classList.remove('hidden');
+}
+
+function hideLoadingSpinner() {
+  const loadingSpinner = document.querySelector(
+    '#results > .loading-container',
+  );
+  if (loadingSpinner) {
+    loadingSpinner.classList.add('hidden');
+  }
 }
 
 function createIssueCard({
@@ -54,10 +68,11 @@ function createIssueCard({
   return card;
 }
 
-function clearChildren(node) {
-  if (node.hasChildNodes()) {
-    const children = node.children;
-    Object.values(node.children).map(child => child.remove());
+function clearResults() {
+  const resultsNode = document.getElementById('results');
+  if (resultsNode.hasChildNodes()) {
+    const children = resultsNode.children;
+    Object.values(resultsNode.children).map(child => child.remove());
   }
 }
 
@@ -84,10 +99,14 @@ function createTimeStamp({ label, updatedAt, createdAt }) {
   `;
 }
 
-export default function createCards(issues) {
+export default function createCards(issues, append = false) {
   const resultsNode = document.getElementById('results');
-  clearChildren(resultsNode);
+  if (!append) {
+    clearResults(resultsNode);
+  } else {
+    hideLoadingSpinner();
+  }
   const cards = issues.map(issue => createIssueCard(issue));
   cards.forEach(card => resultsNode.append(card));
 }
-export { showLoadingSpinner };
+export { showLoadingSpinner, clearResults };

@@ -10,6 +10,11 @@
   @import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
   @import url(https://fonts.googleapis.com/css?family=Bungee+Inline);
   @media (max-width: 640px) {
+
+    html {
+      overflow-y: scroll;
+    }
+
     .language-pickers {
       text-align: center;
     }
@@ -68,7 +73,7 @@
       box-shadow: 0 0 55px rgba(174, 0, 255, .8)
     }
     .card-title-issue {
-      font-size: 50px;
+      font-size: 45px;
     }
     .card-title {
       margin-top: -80px;
@@ -248,6 +253,7 @@
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
+    padding-bottom: 200px;
     width: 100%;
   }
 
@@ -272,7 +278,7 @@
   }
 
   .github-ribbon {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     border: 0;

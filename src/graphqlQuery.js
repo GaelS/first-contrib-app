@@ -3,36 +3,24 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
+import flatten from 'lodash.flatten';
+import orderBy from 'lodash.orderby';
+import escape from 'lodash.escape';
 
 import gql from 'graphql-tag';
-import labels from './labels';
+import { labels } from './labels';
 import createCards from './cards';
 import { getToken, togglePopup } from './login';
 
-const query = gql` 
-  query Search(${labels.map((_, index) => `$query${index}: String!`)}){
-  ${labels.map((_, index) => {
-  return `
-      query${index}: search(first : 10, query: $query${index}, type: ISSUE){
-        issueCount
-        nodes{
-          ...on Issue {
-          title
-          updatedAt
-          createdAt
-          number
+const queryFromRepository = gql`
+query Search($query: String!, $cursor: String) { 
+  search(first : 20, query: $query, type: REPOSITORY, after: $cursor ){
+    edges{
+      cursor
+      node {
+        ...on Repository{
+          name
           url
-          labels(first: 5){
-            nodes{
-              color
-              name
-              id
-            }
-          }
-          repository {
-            name
-            url
-            
           stargazers {
             totalCount
           }
@@ -41,15 +29,29 @@ const query = gql`
               name
             }
           }
-        } 
-          }
+          issues(first: 50, labels: [${labels.map(label => `"${label}"`)}], states: OPEN){
+            nodes {
+              ...on Issue {
+                title
+                url
+                createdAt
+                updatedAt
+                labels(first: 10) {
+                  nodes{
+                  name
+                  color
+                  id
+                }
+              }
+            }
+          }      
         }
       }
-    `;
-})}
+    }
   }
-  `;
-
+}
+}
+`;
 const cache = new InMemoryCache();
 
 const AuthLink = (operation, forward) => {
@@ -61,7 +63,7 @@ const AuthLink = (operation, forward) => {
 };
 
 const ErrorLink = onError(({ graphqlErrors, networkError }) => {
-  if (networkError.statusCode === 401) {
+  if (networkError && networkError.statusCode === 401) {
     togglePopup({ display: true });
   }
 });
@@ -77,61 +79,51 @@ const client = new ApolloClient({
   link,
   cache,
 });
-
-function cleanDataAndCreateCards(data) {
-  const zippedIssues = Object.values(data).reduce(
-    (acc, { issueCount, nodes }) => {
-      acc.issueCount = acc.issueCount + issueCount || 0;
-      acc.issues = [...acc.issues, ...nodes];
-      return acc;
-    },
-    { issueCount: 0, issues: [] },
-  );
-  const trial = zippedIssues.issues.map(issue => {
-    const {
-      title,
-      number,
-      labels = {},
-      updatedAt,
-      createdAt,
-      url,
-      repository = {},
-    } = issue;
-
-    return {
-      title: title,
-      number: number,
-      updatedAt: updatedAt,
-      createdAt: createdAt,
-      issueUrl: url,
-      repositoryUrl: repository.url,
-      labels: labels.nodes,
-      name: repository.name,
-      language: repository.languages.nodes.length
-        ? repository.languages.nodes[0].name
-        : 'empty',
-      stars: repository.stargazers.totalCount,
+function cleanDataAndCreateCards(data, appendResults) {
+  if (!data.search || !data.search.edges) {
+    return [];
+  }
+  const trial = data.search.edges.reduce((acc, d) => {
+    const { name, url, stargazers, languages } = d.node;
+    const repository = {
+      name,
+      repositoryUrl: url,
+      stars: stargazers.totalCount,
+      language: languages.nodes.length ? languages.nodes[0].name : 'empty',
     };
-  });
-  createCards(trial);
+    const issues = d.node.issues.nodes.map(issue => ({
+      ...issue,
+      title: escape(issue.title),
+      issueUrl: issue.url,
+      ...repository,
+      labels: issue.labels.nodes,
+    }));
+    issues.length && acc.push(issues);
+    return acc;
+  }, []);
+  const orderedIssues = orderBy(flatten(trial), 'createdAt', 'desc');
+  window.lastCursor = data.search.edges[data.search.edges.length - 1].cursor;
+  createCards(orderedIssues, appendResults);
 }
 
-function searchIssues({ keyword, language, page = 0, token }) {
+function searchIssues({ keyword, language, page = 0, token }, appendResults) {
+  if (!appendResults) {
+    window.lastCursor = undefined;
+  }
   return client
     .query({
-      query,
-      variables: labels.reduce(
-        (acc, label, index) => {
-          acc[
-            `query${index}`
-          ] = `${keyword} language:${language} type:issue ${label}`;
-          return acc;
-        },
-        { page: (page + 1) * 10 },
-      ),
+      query: queryFromRepository,
+      variables: {
+        query: `${keyword} ${language && `language:${language}`}`,
+        cursor: window.lastCursor,
+      },
     })
-    .then(results => cleanDataAndCreateCards(results.data))
-    .catch(error => console.log('error', error));
+    .then(results => cleanDataAndCreateCards(results.data, appendResults))
+    .catch(
+      error =>
+        console.log('error', error) ||
+        cleanDataAndCreateCards([], appendResults),
+    );
 }
 
 export default searchIssues;
