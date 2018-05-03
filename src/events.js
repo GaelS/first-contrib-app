@@ -2,7 +2,7 @@ import throttle from 'lodash.throttle';
 
 import search from './graphqlQuery';
 import { showLoadingSpinner, clearResults } from './cards';
-import { saveToken, getToken, togglePopup } from './login';
+import { saveToken, getToken, //togglePopup } from './login';
 
 function toggleLanguageSelector() {
   const languages = document.querySelectorAll('.language-picker');
@@ -30,7 +30,7 @@ function initState() {
   if (!!token) {
     saveToken(token);
   }
-  togglePopup({ display: !getToken() });
+  //togglePopup({ display: !getToken() });
   //Perform search if necessary
   if (!!state.q || !!state.language) {
     document.getElementById('searchInput').value = state.q;

@@ -10,7 +10,8 @@ import escape from 'lodash.escape';
 import gql from 'graphql-tag';
 import { labels } from './labels';
 import createCards from './cards';
-import { getToken, togglePopup } from './login';
+import { getToken } from './login';
+import history from './history';
 
 const queryFromRepository = gql`
 query Search($query: String!, $cursor: String) { 
@@ -64,7 +65,7 @@ const AuthLink = (operation, forward) => {
 
 const ErrorLink = onError(({ graphqlErrors, networkError }) => {
   if (networkError && networkError.statusCode === 401) {
-    togglePopup({ display: true });
+    history.push('/disclaimer');
   }
 });
 
@@ -79,7 +80,8 @@ const client = new ApolloClient({
   link,
   cache,
 });
-function cleanDataAndCreateCards(data, appendResults) {
+
+function cleanDataAndCreateCards(data) {
   if (!data.search || !data.search.edges) {
     return [];
   }
@@ -102,28 +104,10 @@ function cleanDataAndCreateCards(data, appendResults) {
     return acc;
   }, []);
   const orderedIssues = orderBy(flatten(trial), 'createdAt', 'desc');
-  window.lastCursor = data.search.edges[data.search.edges.length - 1].cursor;
-  createCards(orderedIssues, appendResults);
+  return orderedIssues;
 }
 
-function searchIssues({ keyword, language, page = 0, token }, appendResults) {
-  if (!appendResults) {
-    window.lastCursor = undefined;
-  }
-  return client
-    .query({
-      query: queryFromRepository,
-      variables: {
-        query: `${keyword} ${language && `language:${language}`}`,
-        cursor: window.lastCursor,
-      },
-    })
-    .then(results => cleanDataAndCreateCards(results.data, appendResults))
-    .catch(
-      error =>
-        console.log('error', error) ||
-        cleanDataAndCreateCards([], appendResults),
-    );
-}
+//  console.log('ici', `${keyword} ${language && `language:${language}`}`);
 
-export default searchIssues;
+export default queryFromRepository;
+export { client, cleanDataAndCreateCards };

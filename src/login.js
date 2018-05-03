@@ -1,6 +1,6 @@
 function saveToken(token) {
   if (!token) {
-    togglePopup();
+    return;
   }
   localStorage.setItem('token', token);
 }
@@ -9,7 +9,7 @@ function getToken() {
   return localStorage.getItem('token');
 }
 
-function togglePopup({ display = false }) {
+/* function togglePopup({ display = false }) {
   const popup = document.querySelector('.login-popup-container');
   const isHidden = popup.classList.contains('hidden');
   if (display && isHidden) {
@@ -19,6 +19,6 @@ function togglePopup({ display = false }) {
   if (!display) {
     popup.classList.add('hidden');
   }
-}
+} */
 
-export { getToken, saveToken, togglePopup };
+export { getToken, saveToken };

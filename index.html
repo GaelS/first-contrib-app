@@ -28,11 +28,12 @@
       margin: 40px;
       background-color: rgba(0, 0, 0, .2);
       background: radial-gradient(to bottom, #000 0, #ae00ff 80%);
-      box-shadow: 0 0 55px rgba(174, 0, 255, .8)
+      box-shadow: 0 0 55px rgba(174, 0, 255, .8);
+      word-break: break-word;
     }
     .card-title {
       margin-top: -50px;
-      flex: 1
+      flex: 1;
     }
 
     .card-title-project {
@@ -195,7 +196,7 @@
   }
 
   #searchInput {
-    margin-top: 50%;
+    margin-top: 200px;
     font-size: 35px;
     font-family: Bungee Inline, cursive;
     background-color: transparent;
@@ -248,13 +249,12 @@
     transform: rotate(1turn)
   }
 
-  #results {
+  .results {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
     padding-bottom: 200px;
-    width: 100%;
   }
 
   .noshrink {
@@ -396,56 +396,7 @@
 </style>
 
 <body>
-  <div id="searchPanel">
-    <div id="searchBar">
-      <input type="search" id="searchInput" class="empty" onfocus="this.placeholder=''" onblur="this.placeholder='search a repository'"
-        placeholder="search a repo">
-      <input type="button" id="searchButton" value="GO!"> </div>
-    <div class="language-pickers">
-      <a class="language-picker" title='Search issues in project written in javascript' id="javascript">Javascript</a>
-      <span class="separator">//</span>
-      <a class="language-picker" title='Search issues in project written in go' id="go">Go</a>
-      <span class="separator">//</span>
-      <a class="language-picker" title='Search issues in project written in c++' id="c">C++</a>
-      <span class="separator">//</span>
-      <a class="language-picker" title='Search issues in project written in html' id="html">HTML</a>
-      <span class="separator">//</span>
-      <a class="language-picker" title='Search issues in project written in css' id="css">CSS</a>
-      <span class="separator">//</span>
-      <a class="language-picker" title='Search issues in project written in java' id="java">Java</a>
-      <span class="separator">//</span>
-      <a class="language-picker" title='Search issues in project written in python' id="python">python</a>
-      <span class="separator">//</span>
-      <a class="language-picker" title='Search issues in project written in ocaml' id="ocaml">OCaml</a>
-      <span class="separator">//</span>
-      <a class="language-picker" title='Search issues in project written in ruby' id="ruby">Ruby</a>
-    </div>
-  </div>
-  <div id="results">
-  </div>
-  <div class="loading-container hidden">
-    <div class="loader-inner pacman">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-
-  <div class="login-popup-container">
-    <div class="login-popup">
-      <h2 class='card-title-project disclaimer-title'>Disclaimer</h2>
-      <h2 class='card-title-issue'>Your Github credentials are required !</h2>
-      <p class="disclaimer-content">This app is powered by the Graphql Github API which requires to be authenticated to be used... That's all ! </p>
-      <div class="buttons-container">
-        <a class='button-ok' title='Go to the app !'>Ok</a>
-        <a class='button-nope' title='Go back to Github' href="http://github.com">Never !
-        </a>
-      </div>
-      <img class="disclaimer-palm-tree" src='./palm-tree.png' alt="Palm Tree" />
-    </div>
-  </div>
+  <div id="react"></div>
   <a href="https://github.com/GaelS/first-contrib-app">
     <img class="github-ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
   </a>
