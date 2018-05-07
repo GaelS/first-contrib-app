@@ -15,6 +15,10 @@
       overflow-y: scroll;
     }
 
+    #searchInput {
+      width: 100%;
+    }
+
     .language-pickers {
       text-align: center;
     }
@@ -29,7 +33,6 @@
       background-color: rgba(0, 0, 0, .2);
       background: radial-gradient(to bottom, #000 0, #ae00ff 80%);
       box-shadow: 0 0 55px rgba(174, 0, 255, .8);
-      word-break: break-word;
     }
     .card-title {
       margin-top: -50px;
@@ -115,6 +118,11 @@
 
   }
 
+  .card {
+    word-break: break-word;
+    max-width: 800px;
+  }
+
   .card-title-issue,
   .card-title-project {
     -webkit-background-clip: text;
@@ -165,6 +173,7 @@
   }
 
   .language-picker {
+    padding: 10px;
     color: #fff;
     background: none;
     border: none;
@@ -358,6 +367,11 @@
     color: #ffffff6b;
     font-family: Permanent Marker, cursive;
     font-size: 25px;
+  }
+
+  .fetch-more-button {
+    font-family: Permanent Marker, cursive;
+
   }
 
   @keyframes flickering {
