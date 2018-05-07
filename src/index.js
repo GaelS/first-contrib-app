@@ -9,36 +9,35 @@ import { getToken, saveToken } from './login';
 import history from './history';
 import MainApp from './App';
 
-class App extends React.Component {
-  state = {
-    query: '',
-    language: '',
+function getParams(location) {
+  const searchParams = new URLSearchParams(location.search);
+  return {
+    query: searchParams.get('query') || '',
+    language: searchParams.get('language') || '',
   };
-  // componentDidUpdate() {
-  //   const searchParams = new URLSearchParams(history.location);
-  //   const query = searchParams.get('query') || '';
-  //   const language = searchParams.get('language') || '';
-  //   console.log(args, query, language);
-  //   if (language !== this.state.language || query !== this.state.query) {
-  //     this.setState({
-  //       query: searchParams.get('query') || '',
-  //       language: searchParams.get('language') || '',
-  //     });
-  //   }
-  // }
-  componentDidMount() {
-    const searchParams = new URLSearchParams(history.location.search);
-    this.setState({
-      query: searchParams.get('query') || '',
-      language: searchParams.get('language') || '',
-    });
-  }
-  search = ({ query, language }) => {
-    const updatedQuery = query || this.state.query;
-    const updatedLanguage = language || this.state.language;
+}
 
-    history.push(`?query=${updatedQuery}&language=${updatedLanguage}`);
-    this.setState({ query: updatedQuery, language: updatedLanguage });
+function getSearchParamsURL({ query, language }) {
+  const searchParams = new URLSearchParams();
+  searchParams.set('query', query);
+  searchParams.set('language', language);
+  return searchParams.toString();
+}
+
+class App extends React.Component {
+  search = ({ query, language }) => {
+    const { query: oldQuery, language: oldLanguage } = getParams(
+      window.location.search,
+    );
+    const updatedQuery = query || oldQuery;
+    const updatedLanguage = language || oldLanguage;
+
+    history.push(
+      `?${getSearchParamsURL({
+        query: updatedQuery,
+        language: updatedLanguage,
+      })}`,
+    );
   };
 
   render() {
@@ -48,9 +47,16 @@ class App extends React.Component {
         <React.Fragment>
           <Route
             path="/"
-            render={() => (
-              <MainApp query={query} language={language} search={this.search} />
-            )}
+            render={({ location }) => {
+              const { query, language } = getParams(location);
+              return (
+                <MainApp
+                  query={query}
+                  language={language}
+                  search={this.search}
+                />
+              );
+            }}
           />
           <Route exact path="/disclaimer" component={Disclaimer} />
           <Route

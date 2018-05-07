@@ -9,13 +9,39 @@
 <style>
   @import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
   @import url(https://fonts.googleapis.com/css?family=Bungee+Inline);
+
+  .fetch-more-button,
+  .no-results,
+  .error {
+    font-family: Permanent Marker, cursive;
+    color: #ff3ff9;
+    font-size: 40px;
+    transform: skewY(-5deg);
+  }
+
+  .fetch-more-button {
+    cursor: pointer;
+    background: none repeat scroll 0 0 transparent;
+    border: 4px solid #ff3ff9;
+    border-radius: 15px;
+    padding: 15px;
+    border-spacing: 0;
+    margin-top: 10%;
+    transition: all 0.5s;
+  }
+
+  .fetch-more-button:hover {
+    box-shadow: 0 0 55px rgba(174, 0, 255, .8);
+    background-clip: text;
+  }
+
+  .card-title-project h2 {
+    margin: 0;
+  }
+
   @media (max-width: 640px) {
 
-    html {
-      overflow-y: scroll;
-    }
-
-    #searchInput {
+    #search-input {
       width: 100%;
     }
 
@@ -34,10 +60,6 @@
       background: radial-gradient(to bottom, #000 0, #ae00ff 80%);
       box-shadow: 0 0 55px rgba(174, 0, 255, .8);
     }
-    .card-title {
-      margin-top: -50px;
-      flex: 1;
-    }
 
     .card-title-project {
       font-size: 15px;
@@ -55,6 +77,15 @@
       flex-wrap: wrap;
       justify-content: space-between;
     }
+    .fetch-more-button {
+      font-size: 20px;
+    }
+    .card-labels {
+      text-align: center;
+    }
+    .fetch-more-button {
+      margin: 30px;
+    }
   }
 
   @media (min-width: 640px) {
@@ -65,10 +96,11 @@
     .card-container {
       display: flex;
       flex-direction: row;
+      justify-content: space-around;
     }
     .card {
       flex-direction: column;
-      padding: 35 35 0;
+      padding: 0 35 0;
       width: 80%;
       min-width: 400px;
       margin: 40px;
@@ -80,8 +112,13 @@
       font-size: 45px;
     }
     .card-title {
-      margin-top: -80px;
       flex: 1
+    }
+    .card-labels {
+      min-width: 30%;
+      max-width: 30%;
+      text-align: right;
+      margin-left: 20px;
     }
 
   }
@@ -90,7 +127,7 @@
     display: flex;
     background-image: linear-gradient(#ff0ff8, #f9f9f7);
     font-family: Permanent Marker, cursive;
-    transform: skew(-5deg, -5deg);
+    transform: skewY(-5deg);
   }
 
   #reset button {
@@ -99,7 +136,6 @@
   }
 
   body {
-
     background: linear-gradient(0deg, #6a0275 0, #040c4a 50%, #6a0275 90%) fixed;
     display: flex;
     align-items: center;
@@ -121,6 +157,7 @@
   .card {
     word-break: break-word;
     max-width: 800px;
+    display: flex;
   }
 
   .card-title-issue,
@@ -158,7 +195,7 @@
   }
 
   .card-labels {
-    align-self: center
+    align-self: center;
   }
 
   .label {
@@ -169,7 +206,9 @@
 
   .link {
     display: block;
-    cursor: pointer
+    cursor: pointer;
+    margin-left: -20px;
+    margin-top: -20px;
   }
 
   .language-picker {
@@ -204,7 +243,7 @@
     color: #fff
   }
 
-  #searchInput {
+  #search-input {
     margin-top: 200px;
     font-size: 35px;
     font-family: Bungee Inline, cursive;
@@ -219,11 +258,11 @@
     text-align: center
   }
 
-  #searchInput:hover {
+  #search-input:hover {
     border-bottom: 3px solid #fff
   }
 
-  #searchInput.empty {
+  #search-input.empty {
     opacity: .5
   }
 
@@ -242,7 +281,7 @@
     color: #fff
   }
 
-  #searchButton {
+  #search-button {
     color: blue;
     background: none;
     border: none;
@@ -253,7 +292,7 @@
     transition: all .3s
   }
 
-  #searchButton:hover {
+  #search-button:hover {
     color: #fff;
     transform: rotate(1turn)
   }
@@ -270,7 +309,7 @@
     flex-shrink: 0;
   }
 
-  #searchBar {
+  #search-bar {
     text-align: center;
   }
 
@@ -369,9 +408,9 @@
     font-size: 25px;
   }
 
-  .fetch-more-button {
-    font-family: Permanent Marker, cursive;
-
+  .no-results,
+  .error {
+    margin-top: 20%;
   }
 
   @keyframes flickering {

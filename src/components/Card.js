@@ -54,23 +54,26 @@ export default function({
 
   return (
     <div className="card">
-      <div className="card-container">
-        <div className="card-title">
-          <a
-            className="link card-title-project"
-            href={repositoryUrl}
-            target="_blank"
-            title={`Go to ${name} repository`}
-          >
-            <h2>{name}</h2>
-          </a>
-          <h1 className="card-title-issue">
-            <a href={issueUrl} target="_blank" title="Go to the issue">
-              {title}
-            </a>
-          </h1>
+      <div className="link card-title-project">
+        <a
+          href={repositoryUrl}
+          target="_blank"
+          title={`Go to ${name} repository`}
+        >
+          <h2>{name}</h2>
+        </a>
+      </div>
+      <div className="card-title">
+        <div className="card-container">
+          <div>
+            <h1 className="card-title-issue">
+              <a href={issueUrl} target="_blank" title="Go to the issue">
+                {title}
+              </a>
+            </h1>
+          </div>
+          <Labels labels={labels} />
         </div>
-        <Labels labels={labels} />
       </div>
       <Footer language={language} timestamps={timestamps} stars={stars} />
     </div>

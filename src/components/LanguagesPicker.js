@@ -3,7 +3,7 @@ import React from 'react';
 const languages = {
   javascript: 'Javascript',
   go: 'Go',
-  c: 'C+',
+  c: 'C',
   css: 'CSS',
   java: 'Java',
   python: 'Python',

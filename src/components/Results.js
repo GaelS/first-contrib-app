@@ -4,13 +4,13 @@ import orderBy from 'lodash.orderby';
 import flatten from 'lodash.flatten';
 
 import Card from './Card';
+import FetchMoreButton from './FetchMoreButton';
 import LoadingSpinner from './LoadingSpinner';
 import GET_ISSUES from '../graphqlQuery';
-import { responsePathAsArray } from 'graphql';
 
 function formatData(data) {
-  if (!data.search || !data.search.edges) {
-    return [];
+  if (!data.search || !data.search.edges || data.search.edges.length === 0) {
+    return { issues: [], cursor: undefined };
   }
   const trial = data.search.edges.reduce((acc, d) => {
     const { name, url, stargazers, languages } = d.node;
@@ -45,26 +45,39 @@ export default ({ query, language }) => {
         query: queryVar,
       }}
       notifyOnNetworkStatusChange={true}
+      cachePolicy="network-only"
     >
       {({ loading, error, data, fetchMore, networkStatus }) => {
+        if (!query && !language) {
+          //No search performed
+          //Hack coz' skip not usable
+          //on renderProps query Component AFAIK
+          return;
+        }
         const isFetchingMore = networkStatus === 3;
         if (loading && !isFetchingMore) {
           return <LoadingSpinner />;
-        }
-        if (error) {
-          return <div>A bug occured....</div>;
         }
         const { issues, cursor } = formatData(data);
         lastCursor = cursor;
         return (
           <React.Fragment>
             <div className="results">
-              {issues.map((issue, index) => {
-                return <Card key={issue.issueUrl} {...issue} />;
-              })}
+              {error && <div className="error">An error occured....</div>}
+              {!error &&
+                issues.map((issue, index) => {
+                  return <Card key={issue.issueUrl} {...issue} />;
+                })}
+              {issues.length === 0 &&
+                !error &&
+                !loading &&
+                !isFetchingMore &&
+                <div className="no-results">No Results on this one...</div>}
               {isFetchingMore && <LoadingSpinner />}
               {!isFetchingMore &&
-                <button
+                issues.length !== 0 &&
+                !error &&
+                <FetchMoreButton
                   onClick={() =>
                     fetchMore({
                       variables: {

@@ -107,7 +107,5 @@ function cleanDataAndCreateCards(data) {
   return orderedIssues;
 }
 
-//  console.log('ici', `${keyword} ${language && `language:${language}`}`);
-
 export default queryFromRepository;
 export { client, cleanDataAndCreateCards };
