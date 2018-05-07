@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel index.html --open",
     "build": "parcel build index.html --public-url https://first-contrib.surge.sh",
-    "deploy": "rm -rf ./dist && npm run build --public-url https://first-contrib.surge.sh && cp ./dist/index.html ./dist/200.html && rm ./dist/index.html && surge"
+    "deploy": "rm -rf ./dist && npm run build --public-url https://first-contrib.surge.sh && cp ./dist/index.html ./dist/200.html && rm ./dist/index.html && surge -p ./dist -d first-contrib.surge.sh"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.1.11",
@@ -18,7 +18,6 @@
     "graphql-tag": "^2.8.0",
     "history": "^4.7.2",
     "loaders.css": "^0.1.2",
-    "lodash.escape": "^4.0.1",
     "lodash.flatten": "^4.4.0",
     "lodash.orderby": "^4.6.0",
     "preact": "^8.2.9",

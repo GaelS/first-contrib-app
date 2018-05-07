@@ -5,7 +5,6 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import flatten from 'lodash.flatten';
 import orderBy from 'lodash.orderby';
-import escape from 'lodash.escape';
 
 import gql from 'graphql-tag';
 import { labels } from './labels';
