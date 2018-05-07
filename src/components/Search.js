@@ -3,7 +3,7 @@ import React from 'react';
 import LanguagesPicker from './LanguagesPicker';
 import Results from './Results';
 
-const PLACEHOLDER = 'Browse repositories';
+const PLACEHOLDER = 'search issues...';
 
 class Search extends React.Component {
   state = { placeholder: PLACEHOLDER, value: '', dirty: false };

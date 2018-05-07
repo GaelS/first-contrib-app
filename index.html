@@ -37,6 +37,7 @@
 
   .card-title-project h2 {
     margin: 0;
+    margin-left: 10px;
   }
 
   .loading-overlay {
@@ -49,6 +50,21 @@
     opacity: 0.5;
   }
 
+  #search-input {
+    margin-top: 200px;
+    font-size: 25px;
+    font-family: Bungee Inline, cursive;
+    background-color: transparent;
+    border: none;
+    opacity: 1;
+    color: #ae00ff;
+    border-bottom: 3px solid #ff0ff8;
+    box-shadow: 0 4px 7px -5px #fff;
+    margin-bottom: 15px;
+    transition: all .2s ease;
+    text-align: center
+  }
+
   @media (max-width: 640px) {
 
     #search-input {
@@ -57,10 +73,12 @@
 
     .language-pickers {
       text-align: center;
+      line-height: 30px;
     }
     .card-container {
       display: flex;
       flex-direction: column;
+      padding: 10px;
     }
     .card {
       flex-direction: column;
@@ -72,8 +90,7 @@
     }
 
     .card-title-project {
-      font-size: 15px;
-      margin-left: -20px;
+      font-size: 20px;
     }
 
     .disclaimer-title {
@@ -100,6 +117,10 @@
 
   @media (min-width: 640px) {
     .card-title-project {
+      font-size: 35px;
+    }
+
+    #search-input {
       font-size: 35px;
     }
 
@@ -168,6 +189,7 @@
     word-break: break-word;
     max-width: 800px;
     display: flex;
+    padding: 10px;
   }
 
   .card-title-issue,
@@ -217,8 +239,6 @@
   .link {
     display: block;
     cursor: pointer;
-    margin-left: -20px;
-    margin-top: -20px;
   }
 
   .language-picker {
@@ -253,21 +273,6 @@
     color: #fff
   }
 
-  #search-input {
-    margin-top: 200px;
-    font-size: 35px;
-    font-family: Bungee Inline, cursive;
-    background-color: transparent;
-    border: none;
-    opacity: 1;
-    color: #ae00ff;
-    border-bottom: 3px solid #ff0ff8;
-    box-shadow: 0 4px 7px -5px #fff;
-    margin-bottom: 15px;
-    transition: all .2s ease;
-    text-align: center
-  }
-
   #search-input:hover {
     border-bottom: 3px solid #fff
   }
@@ -279,12 +284,6 @@
   input:focus {
     outline: none;
     border: 1px solid #ff0ff8
-  }
-
-  #searchPanel {
-    align-self: center;
-    flex-direction: column;
-    align-items: center
   }
 
   .separator {
