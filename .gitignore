@@ -12,6 +12,9 @@
 # production
 /dist
 
+#logs
+report.html
+
 # misc
 .DS_Store
 .env.local

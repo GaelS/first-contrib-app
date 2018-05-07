@@ -6,7 +6,8 @@
   "scripts": {
     "start": "parcel index.html --open",
     "build": "parcel build index.html --public-url https://first-contrib.surge.sh",
-    "deploy": "rm -rf ./dist && npm run build --public-url https://first-contrib.surge.sh && cp ./dist/index.html ./dist/200.html && rm ./dist/index.html && surge -p ./dist -d first-contrib.surge.sh"
+    "deploy": "rm -rf ./dist && npm run build --public-url https://first-contrib.surge.sh && cp ./dist/index.html ./dist/200.html && rm ./dist/index.html && surge -p ./dist -d first-contrib.surge.sh",
+    "logs": "parcel build index.html --no-cache --detailed-report --optimize-minimize"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.1.11",
@@ -37,7 +38,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "parcel-bundler": "^1.7.1"
+    "parcel-bundler": "^1.7.1",
+    "parcel-plugin-bundle-visualiser": "^1.1.2"
   },
   "keywords": []
 }
