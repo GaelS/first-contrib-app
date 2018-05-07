@@ -5,8 +5,8 @@
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build index.html --public-url ./ ",
-    "deploy": "npm run build && cp ./dist/first-contrib-project.html ./dist/200.html && surge"
+    "build": "parcel build index.html --public-url https://first-contrib.surge.sh",
+    "deploy": "rm -rf ./dist && npm run build --public-url https://first-contrib.surge.sh && cp ./dist/index.html ./dist/200.html && rm ./dist/index.html && surge"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.1.11",
