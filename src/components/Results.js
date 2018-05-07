@@ -37,7 +37,7 @@ function formatData(data) {
 
 export default ({ query, language }) => {
   let lastCursor;
-  const queryVar = `${query} language:"${language}"`;
+  const queryVar = `${query} sort:stars-desc language:"${language}"`;
   return (
     <Query
       query={GET_ISSUES}

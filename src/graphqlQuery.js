@@ -15,7 +15,7 @@ import history from './history';
 
 const queryFromRepository = gql`
 query Search($query: String!, $cursor: String) { 
-  search(first : 20, query: $query, type: REPOSITORY, after: $cursor ){
+  search(first : 30, query: $query, type: REPOSITORY, after: $cursor ){
     edges{
       cursor
       node {
@@ -81,31 +81,5 @@ const client = new ApolloClient({
   cache,
 });
 
-function cleanDataAndCreateCards(data) {
-  if (!data.search || !data.search.edges) {
-    return [];
-  }
-  const trial = data.search.edges.reduce((acc, d) => {
-    const { name, url, stargazers, languages } = d.node;
-    const repository = {
-      name,
-      repositoryUrl: url,
-      stars: stargazers.totalCount,
-      language: languages.nodes.length ? languages.nodes[0].name : 'empty',
-    };
-    const issues = d.node.issues.nodes.map(issue => ({
-      ...issue,
-      title: escape(issue.title),
-      issueUrl: issue.url,
-      ...repository,
-      labels: issue.labels.nodes,
-    }));
-    issues.length && acc.push(issues);
-    return acc;
-  }, []);
-  const orderedIssues = orderBy(flatten(trial), 'createdAt', 'desc');
-  return orderedIssues;
-}
-
 export default queryFromRepository;
-export { client, cleanDataAndCreateCards };
+export { client };
