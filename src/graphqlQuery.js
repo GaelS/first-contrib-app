@@ -8,7 +8,6 @@ import orderBy from 'lodash.orderby';
 
 import gql from 'graphql-tag';
 import { labels } from './labels';
-import createCards from './cards';
 import { getToken } from './login';
 import history from './history';
 
