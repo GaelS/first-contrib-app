@@ -9,7 +9,6 @@ import orderBy from 'lodash.orderby';
 import gql from 'graphql-tag';
 import { labels } from './labels';
 import { getToken } from './login';
-import history from './history';
 
 const queryFromRepository = gql`
 query Search($query: String!, $cursor: String) { 
@@ -63,7 +62,7 @@ const AuthLink = (operation, forward) => {
 
 const ErrorLink = onError(({ graphqlErrors, networkError }) => {
   if (networkError && networkError.statusCode === 401) {
-    history.push('/disclaimer');
+    window.history.pushState({}, null, '/disclaimer');
   }
 });
 

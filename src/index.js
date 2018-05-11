@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import '../node_modules/loaders.css/loaders.css';
 
 import Disclaimer from './components/Disclaimer';
 import { getToken, saveToken } from './login';
-import history from './history';
 import MainApp from './App';
 
 function getParams(location) {
@@ -24,10 +23,10 @@ function getSearchParamsURL({ query, language }) {
   return searchParams.toString();
 }
 
-class App extends React.Component {
-  search = ({ query, language }) => {
+function search({ location, history }) {
+  return function({ query, language }) {
     const { query: oldQuery, language: oldLanguage } = getParams(
-      window.location.search,
+      location.search,
     );
     const updatedQuery = query || oldQuery;
     const updatedLanguage = language || oldLanguage;
@@ -39,21 +38,23 @@ class App extends React.Component {
       })}`,
     );
   };
+}
 
+class App extends React.Component {
   render() {
     const { query, language } = this.state;
     return (
-      <Router history={history}>
+      <Router>
         <React.Fragment>
           <Route
             path="/"
-            render={({ location }) => {
+            render={({ location, history }) => {
               const { query, language } = getParams(location);
               return (
                 <MainApp
                   query={query}
                   language={language}
-                  search={this.search}
+                  search={search({ location, history })}
                 />
               );
             }}
