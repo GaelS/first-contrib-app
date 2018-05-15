@@ -1,7 +1,7 @@
 # First Contrib Search
 
 
-TLDR; Try it [https://first-contrib.surge.sh](here) !
+TLDR; Try it [here](https://first-contrib.surge.sh) !
 
 ![First Contrib App](./github.png)
 
