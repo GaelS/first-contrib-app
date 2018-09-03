@@ -24,7 +24,7 @@ And because doing a search engine can be cooler than it is, I tried to follow my
 
  - I wanted to use the GraphQL API provided by Github because it drastically reduces the network calls number. However, it is not callable without being authenticated. Therefore, as a user, you must be authenticated to Github to use this app.
  
- - Major drawback: when searching issues by label in Github, we cannot use "OR" operator. Basically, we cannot search for issue having labels *GOOD FIRST CONTRIBUTION **OR** *UP FOR GRABS* in one query. Therefore, the trick to get the issues that could be of interest is to query **repositories** that have **issues** matching our labels' list. The unfortunate consequence is that the list of issues listed in a repository can sometimes be empty... which leads sometimes to get a list of 20 repositories with no issues at all to display... That is the reason why the *fetch more* button might need to be smashed several times before finding new issues to display... 
+ - Major drawback: when searching issues by label in Github, we cannot use "OR" operator. Basically, we cannot search for issue having labels *GOOD FIRST CONTRIBUTION* **OR** *UP FOR GRABS* in one query. Therefore, the trick to get the issues that could be of interest is to query **repositories** that have **issues** matching our labels' list. The unfortunate consequence is that the list of issues listed in a repository can sometimes be empty... which leads sometimes to get a list of 20 repositories with no issues at all to display... That is the reason why the *fetch more* button might need to be smashed several times before finding new issues to display... 
  A naive idea of mine was to query again a new list of repositories when zero issues are returned but launching network requests recursively does not seem like a good idea...ahem... 
 
 ## The stack
@@ -43,7 +43,7 @@ It's a first draft so lot of things still need to be done
  - Polish the style
  - Improve sorting possibility (so far, it's hardcoded by descending stars numbers).
  - Functional tests (because we always need tests :))
- - As said before, a trick to get an elegant way to query only meaningful repositoies that have issues. 
+ - As said before, a trick to get an elegant way to query only meaningful repositories that have issues. 
 
 Feel free to open PR or submit issues :) 
 
