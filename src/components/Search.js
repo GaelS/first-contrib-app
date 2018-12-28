@@ -53,7 +53,7 @@ class Search extends React.Component {
             type="button"
             id="search-button"
             value="GO!"
-            onClick={() => search({ query: this.state.value })}
+            onClick={() => search({ query: this.state.value , language})}
           />
           <LanguagesPicker
             updateLanguage={language =>
