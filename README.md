@@ -16,7 +16,7 @@ Going further, if you want to search for issues that can be handled by beginners
 
 ## The Answer
 
-This app tries to answer this problem by providing you with a simple search engine which will target all the issues with labels being more or less related with *beginners*. For now, more or less 50 different labels are listed in this [https://github.com/GaelS/first-contrib-app/blob/master/src/labels.js](file). 
+This app tries to answer this problem by providing you with a simple search engine which will target all the issues with labels being more or less related with *beginners*. For now, more or less 50 different labels are listed in this [file](https://github.com/GaelS/first-contrib-app/blob/master/src/labels.js). 
 
 And because doing a search engine can be cooler than it is, I tried to follow my 80's inner vibes to provide a *Miami Vice*/*GTA Vice City* style :)
 
