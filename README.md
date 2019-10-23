@@ -68,14 +68,14 @@ TLDR; Experimente aqui [here](https://first-contrib.surge.sh) !
 
 Como programador que deseja dar sua primeira contribuição a um projeto de código aberto, às vezes pode ser difícil encontrar o projeto certo que corresponda às suas expectativas e habilidades.
 
-Graças a alguns projetos como a [awesome list] (https://github.com/MunGell/awesome-for-beginners), você ainda pode encontrar listas * estáticas * de projetos que procuram desenvolvedores.
+Graças a alguns projetos como a [awesome list](https://github.com/MunGell/awesome-for-beginners), você ainda pode encontrar listas * estáticas * de projetos que procuram desenvolvedores.
 
-Indo além, se você deseja pesquisar problemas que podem ser tratados por iniciantes com o [Github Search Engine] (https://github.com/search/advanced), você ainda precisa saber qual tag é utilizada por cada repositório para iniciantes.
+Indo além, se você deseja pesquisar problemas que podem ser tratados por iniciantes com o [Github Search Engine](https://github.com/search/advanced), você ainda precisa saber qual tag é utilizada por cada repositório para iniciantes.
 
 
 ## A resposta
 
-Este aplicativo tenta solucionar esse problema, fornecendo a você um mecanismo de pesquisa simples, que abordará todos os problemas com tags mais ou menos relacionados a * iniciantes *. Por enquanto, mais ou menos 50 tags diferentes estão listadas neste [arquivo] (https://github.com/GaelS/first-contrib-app/blob/master/src/labels.js).
+Este aplicativo tenta solucionar esse problema, fornecendo a você um mecanismo de pesquisa simples, que abordará todos os problemas com tags mais ou menos relacionados a * iniciantes *. Por enquanto, mais ou menos 50 tags diferentes estão listadas neste [file](https://github.com/GaelS/first-contrib-app/blob/master/src/labels.js).
 
 E como fazer um mecanismo de busca pode ser mais legal do que é, tentei seguir minhas vibrações internas dos anos 80 para fornecer um estilo * Miami Vice * / * GTA Vice City * :)
 
