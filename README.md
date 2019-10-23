@@ -53,14 +53,16 @@ Feel free to open PR or submit issues :)
 
 MIT
 
+# 
+
 [Portuguese]
  
 # Pesquisa de primeira contribuição
 
 
-TLDR; Experimente [aqui] (https://first-contrib.surge.sh)!
+TLDR; Experimente aqui [here](https://first-contrib.surge.sh) !
 
-! [First Contrib App] (./ github.png)
+![First Contrib App](./github.png)
 
 ## Por que esse projeto?
 
