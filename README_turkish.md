@@ -25,7 +25,7 @@ Ve bir arama motoru yapmak olduğundan daha havalı olabileceğinden, bir _Miami
 - Büyük dezavantaj: Github'da sorunları etikete göre ararken "OR" operatörünü kullanamayız. Temel olarak, bir sorguda _GOOD FIRST CONTRIBUTION_ **VEYA** _UP FOR GRBS_ etiketlerine sahip sorunu arayamayız. Bu nedenle, ilginizi çekebilecek sorunları bulmanın püf noktası, etiket listemizle eşleşen **sorunlara** sahip **havuzları** sorgulamaktır. Talihsiz sonuç, bir depoda listelenen sorunların listesinin bazen boş olabilmesidir... bu da bazen görüntülenecek hiçbir sorunu olmayan 20 depodan oluşan bir listenin alınmasına yol açar... Bu nedenle, _daha fazla getir_ düğmesi görüntülenecek yeni sorunlar bulmadan önce birkaç kez parçalanması gerekiyor...
   Benim saf bir fikrim, sıfır sorun döndürüldüğünde yeni bir havuz listesini yeniden sorgulamaktı, ancak ağ isteklerini tekrar tekrar başlatmak iyi bir fikir gibi görünmüyor... ahem...
 
-## Kullanılar Kütüphaneler
+## Kullanılan Kütüphaneler
 
 Bu projenin ana kütüphaneleri şunlardır :
 
