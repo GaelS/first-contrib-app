@@ -14,8 +14,6 @@ Daha da ileri giderek eğer [Github Search Engine](https://github.com/search/adv
 
 ## Cevap
 
-Bu program, bu [dosyadaki](https://github.com/GaelS/first-contrib-app/blob/master/src/labels.js) listelenmiş _yeni başlaynlar_ ile ilgili 50 farklı etiketi kullanarak
-
 Bu uygulama, size _yeni başlayanlar_ ile ilgili olan etiketlerle ilgili tüm sorunları hedefleyecek basit bir arama motoru sağlayarak bu sorunu yanıtlamaya çalışır. Şimdilik, bu [dosyada](https://github.com/GaelS/first-contrib-app/blob/master/src/labels.js) aşağı yukarı 50 farklı etiket listeleniyor.
 
 Ve bir arama motoru yapmak olduğundan daha havalı olabileceğinden, bir _Miami Vice_/_GTA Vice City_ tarzı sağlamak için 80'lerimin iç titreşimlerini takip etmeye çalıştım :)
