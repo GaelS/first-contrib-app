@@ -46,6 +46,23 @@ As principais bibliotecas deste projeto são:
 
 Sinta-se à vontade para abrir o PR ou enviar questões :)
 
+## Diretrizes de Contribuição
+Obrigado por considerar contribuir para o First Contrib App! Para garantir uma colaboração tranquila, siga estas diretrizes:
+
+1) Verifique Problemas Existentes: Antes de começar a trabalhar em algo novo, verifique os problemas existentes para garantir que não tenha sido relatado ou trabalhado anteriormente.
+
+2) Faça um Fork do Repositório: Se encontrar um problema ou desejar adicionar uma funcionalidade, faça um fork do repositório no GitHub.
+
+3) Ramificação: Crie um novo branch para a sua contribuição. Isso ajuda a manter suas alterações isoladas e facilita a fusão do seu trabalho.
+
+4) Estilo de Código: Siga o estilo de código existente para manter a consistência. Em caso de dúvida, consulte o código existente.
+
+5) Testes: Se estiver adicionando novas funcionalidades, certifique-se de adicionar testes relevantes. Se estiver corrigindo um bug, verifique se existem testes que abordam o problema.
+
+6) Pull Requests: Quando suas alterações estiverem prontas, envie um pull request. Forneça uma descrição clara e concisa de suas alterações. Mencione o número do problema, se aplicável.
+
+7) Seja Paciente: Entenda que projetos de código aberto são mantidos por voluntários. Tenha paciência se houver atrasos na revisão ou fusão do seu pull request.
+
 ## LICENÇA
 
 MIT.

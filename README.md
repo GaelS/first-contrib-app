@@ -47,6 +47,23 @@ It's a first draft so lot of things still need to be done
 
 Feel free to open PR or submit issues :) 
 
+## Contribution Guidelines
+Thank you for considering contributing to the First Contrib App! To ensure a smooth collaboration, please follow these guidelines:
+
+1) Check for Existing Issues: Before you start working on something new, check the existing issues to make sure it hasn't already been reported or worked on.
+
+2) Fork the Repository: If you find an issue or want to add a feature, fork the repository on GitHub.
+
+3) Branching: Create a new branch for your contribution. This helps keep your changes isolated and makes it easier to merge your work.
+
+4) Code Style: Follow the existing code style to maintain consistency. If in doubt, refer to the existing codebase.
+
+5) Testing: If you're adding new features, ensure to add relevant tests. If fixing a bug, make sure there are tests that cover the issue.
+
+6) Pull Requests: Once your changes are ready, submit a pull request. Provide a clear and concise description of your changes. Mention the issue number if applicable.
+
+7) Be Patient: Understand that open-source projects are maintained by volunteers. Be patient if there are delays in reviewing or merging your pull request.
+
 ## LICENCE
 
 MIT.
